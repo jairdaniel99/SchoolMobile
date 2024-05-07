@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title> Tab 1 </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,6 +10,12 @@
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
-
+  <!-- slot = fixed moved the fab button over the tabs list -->
+  <ion-fab slot="fixed" horizontal="end" vertical="bottom">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+      <ion-label>Tab 1</ion-label>
+    </ion-fab-button>
+  </ion-fab>
   <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>
