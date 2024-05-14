@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { SchoolService } from '../services/school.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,9 +8,39 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page {
-  constructor(private navCtrl: NavController) {}
+  students: any[] = [];
+  constructor(
+    private navCtrl: NavController,
+    private schoolService: SchoolService
+  ) {}
 
+  ngOnInit() {
+    this.schoolService.getStudents().subscribe((response) => {
+      this.students = response;
+    });
+  }
   openForm() {
     this.navCtrl.navigateForward('/tabs/form');
+  }
+
+  // delete student
+  deleteStudent(studentID: number) {
+    // Remove student from students array
+    // findIndex will return the index of the student matching the studentName OR -1 if not found
+    let index = this.students.findIndex((student) => student.id === studentID);
+
+    // if student with studentName is not found, return/exit the function here
+    if (index === -1) {
+      return;
+    }
+
+    // delete student from the API
+    this.schoolService.deleteStudent(studentID).subscribe(
+      (student) => {
+        // remove student from students array
+        this.students.splice(index, 1);
+      },
+      (error) => console.log('Error: ', error)
+    );
   }
 }

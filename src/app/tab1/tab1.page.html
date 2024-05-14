@@ -17,5 +17,20 @@
       <ion-label>Tab 1</ion-label>
     </ion-fab-button>
   </ion-fab>
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-list>
+    <ion-item *ngFor="let student of students">
+      <ion-label>
+        <h2>{{student.name}}</h2>
+        <p>{{student.age}} years old</p>
+        <p>{{student.grade}} GPA</p>
+        <p>{{student.level}}</p>
+      </ion-label>
+      <ion-button slot="end">
+        <ion-icon name="pencil" slot="end"></ion-icon>
+      </ion-button>
+      <ion-button (click)="deleteStudent(student.id)" color="light" slot="end">
+        <ion-icon name="trash" color="danger" slot="end"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>

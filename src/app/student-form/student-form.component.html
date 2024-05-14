@@ -1,11 +1,9 @@
-<form (ngSubmit)="onSubmit()">
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
   <ion-item>
     <ion-input
       name="name"
-      [(ngModel)]="studentForm.name"
-      label="Name"
-      label-placement="floating"
-      placeholder="Enter text"
+      formControlName="name"
+      type="text"
       required
       minlength="3"
       helperText="Please enter your name."
@@ -13,36 +11,32 @@
     ></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="fixed">Age</ion-label>
     <ion-input
-      type="number"
       name="age"
-      [(ngModel)]="studentForm.age"
-      label-placement="floating"
-      placeholder="Enter text"
+      formControlName="age"
+      type="number"
       required
       helperText="Please enter your age."
       errorText="Age is required."
     ></ion-input>
   </ion-item>
+
   <ion-item>
     <ion-input
       name="grade"
-      [(ngModel)]="studentForm.grade"
-      label="Grade"
-      label-placement="floating"
-      placeholder="Enter text"
+      formControlName="grade"
+      type="number"
       required
       helperText="Please enter your Grade Point Average (GPA)."
       errorText="Grade is required."
     ></ion-input>
   </ion-item>
+
   <ion-item>
     <ion-select
       name="level"
-      [(ngModel)]="studentForm.level"
-      label="Level"
-      placeholder="Make a Selection"
+      formControlName="level"
+      placeholder="select a level"
       required
       helperText="Please enter your level."
       errorText="Level is required."
@@ -52,5 +46,5 @@
       <ion-select-option value="postgrad">Postgrad</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-button type="submit">Submit</ion-button>
+  <ion-button type="submit" expand="block">Submit</ion-button>
 </form>
