@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { SchoolService } from '../services/school.service';
 
 @Component({
@@ -11,7 +11,8 @@ export class Tab1Page {
   students: any[] = [];
   constructor(
     private navCtrl: NavController,
-    private schoolService: SchoolService
+    private schoolService: SchoolService,
+    private alertCtrl: AlertController
   ) {}
 
   ngOnInit() {
@@ -56,5 +57,26 @@ export class Tab1Page {
       },
       (error) => console.log('Error: ', error)
     );
+  }
+  async presentAlertConfirmDialog(id: number) {
+    const alert = await this.alertCtrl.create({
+      header: 'Confirm delete',
+      message: 'Are you sure you want to delete this student?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.deleteStudent(id);
+          },
+        },
+      ],
+    });
+    // display the alert
+    await alert.present();
   }
 }

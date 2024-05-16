@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SchoolService } from '../services/school.service';
 import { Student } from '../models/student';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -26,7 +26,8 @@ export class StudentFormComponent implements OnInit {
     private schoolService: SchoolService,
     private formBuilder: FormBuilder,
     private navCtrl: NavController,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastCtrl: ToastController
   ) {}
 
   ngOnInit(): void {
@@ -55,6 +56,26 @@ export class StudentFormComponent implements OnInit {
         }
       );
     }
+  }
+
+  async successToast() {
+    const toast = await this.toastCtrl.create({
+      message: 'Student added successfully',
+      duration: 2000,
+      color: 'success',
+    });
+
+    toast.present();
+  }
+
+  async failureToast(message: string) {
+    const toast = await this.toastCtrl.create({
+      message: message,
+      duration: 2000,
+      color: 'danger',
+    });
+
+    toast.present();
   }
 
   onSubmit() {
@@ -87,9 +108,15 @@ export class StudentFormComponent implements OnInit {
           (response) => {
             this.studentForm.reset();
 
+            // display success toast
+            this.successToast();
+
             this.navCtrl.navigateBack('/tabs/tab1');
           },
-          (error) => console.log('Error: ', error)
+          (error) =>
+            this.failureToast(
+              'Error adding students. Please contact the administrator.'
+            )
         );
       }
     }

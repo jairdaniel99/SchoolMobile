@@ -28,7 +28,11 @@
       <ion-button (click)="editStudent(student.id)" slot="end">
         <ion-icon name="pencil" slot="end"></ion-icon>
       </ion-button>
-      <ion-button (click)="deleteStudent(student.id)" color="light" slot="end">
+      <ion-button
+        (click)="presentAlertConfirmDialog(student.id)"
+        color="light"
+        slot="end"
+      >
         <ion-icon name="trash" color="danger" slot="end"></ion-icon>
       </ion-button>
     </ion-item>
