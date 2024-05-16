@@ -15,12 +15,26 @@ export class Tab1Page {
   ) {}
 
   ngOnInit() {
+    this.getStudentsData();
+  }
+
+  //this method below is called everytime the tab 1 page is entered
+  ionViewWillEnter() {
+    this.getStudentsData();
+  }
+
+  getStudentsData() {
     this.schoolService.getStudents().subscribe((response) => {
       this.students = response;
     });
   }
   openForm() {
     this.navCtrl.navigateForward('/tabs/form');
+  }
+
+  // navigate to student form
+  editStudent(id: number) {
+    this.navCtrl.navigateForward(`/tabs/form/${id}`);
   }
 
   // delete student
