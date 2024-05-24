@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-title> About </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,6 +10,12 @@
       <ion-title size="large">Tab 3</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-fab slot="fixed" horizontal="end" vertical="bottom">
+    <ion-fab-button (click)="sendEmail()">
+      <ion-icon name="add"></ion-icon>
+      <ion-label>Contact Us</ion-label>
+    </ion-fab-button>
+  </ion-fab>
 
   <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>
