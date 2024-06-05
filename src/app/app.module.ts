@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { OpenNativeSettings } from '@ionic-native/open-native-settings/ngx';
+import { Contacts } from '@capacitor-community/contacts';
 
 @NgModule({
   declarations: [AppComponent],
